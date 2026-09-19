@@ -442,11 +442,22 @@ context or exposes it through its own tools.
 
 ### How does an agent see messages added after it starts?
 
+
 The host records the last accepted sequence number as a watermark. Before a
 later turn, `prepare_delta` reads only qualifying messages between that
 watermark and the new trigger, preserves their authorship, and returns them in
 chronological order. If the gap cannot be read safely inside the scan bound,
 the library asks the host to reinitialize instead of silently skipping history.
+## Common Use Cases
+
+TinyJuice can be useful in a variety of workflows:
+
+- Compressing large terminal logs before sending them to an AI model
+- Reducing token usage when analyzing code diffs
+- Summarizing search results and web content
+- Making long JSON outputs easier to inspect
+- Keeping important errors and warnings visible in large logs
+- Improving context efficiency for coding agents and automation tools
 
 ### Does tinyhivemind assign work or run agents?
 
